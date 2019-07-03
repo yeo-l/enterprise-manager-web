@@ -1,0 +1,26 @@
+<!--<alert type="success" [dismissible]="true">-->
+  <!--<strong>Well done!</strong> You successfully read this important alert message.-->
+<!--</alert>-->
+<button class="btn btn-primary mb-1" routerLink="/job/form"><i class="fa fa-plus"></i> Nouveau</button>
+<table class="table table-bordered table-striped table-sm mb-1" datatable [dtOptions]="dtOptions">
+  <thead class="thead-dark">
+  <tr>
+    <th>#</th>
+    <th>Nom de l'emploi</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let job of jobs">
+    <td valign="center">{{job.id}}</td>
+    <td valign="center">{{job.name}}</td>
+    <td width="100" align="center">
+      <div class="btn-group-sm btn-group">
+        <a class="btn btn-link details-icon text-dark" [routerLink]="['/job/details', job.id]"><i class="fa fa-1x fa-eye"></i></a>
+        <a class="btn btn-link edit-icon text-success" [routerLink]="['/job/form/edit', job.id]"><i class="fa fa-1x fa-edit"></i></a>
+        <a class="btn btn-link edit-icon text-danger" (click)="openConfirmationDialog(job.id)"><i class="fa fa-1x fa-trash"></i></a>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>

@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-md-8">
+    <form #f="ngForm" (ngSubmit)="save(f.value)">
+      <input type="hidden" class="form-control" id="id" [(ngModel)]="contractType.id" name="id">
+      <input type="hidden" class="form-control" id="uuid" [(ngModel)]="contractType.uuid" name="uuid">
+      <div class="form-group">
+        <label for="name" class="control-label">Libellé</label>
+        <input type="text" class="form-control" id="name" [(ngModel)]="contractType.name" name="name">
+      </div>
+      <div class="form-group">
+        <label for="normalDuration" class="control-label">Durée (jour)</label>
+        <input type="text" class="form-control" id="normalDuration" [(ngModel)]="contractType.normalDuration" name="normalDuration">
+      </div>
+      <div class="form-group">
+        <label for="description" class="control-label">Description</label>
+        <textarea name="description" id="description"  [(ngModel)]="contractType.description" cols="30" rows="5" class="form-control"></textarea>
+      </div>
+      <div class="form-group">
+        <button *ngIf="!contractType.id" class="btn btn-success" type="submit"><i class="fa fa-save"></i> Enregistrer</button>
+        <button *ngIf="contractType.id" class="btn btn-success" type="submit"><i class="fa fa-save"></i> Modifier</button>
+
+        <button class="btn btn-dark ml-1" (click)="backClicked()"><i class="fa fa-undo"></i> Annuler</button>
+      </div>
+    </form>
+  </div>
+
+</div>
+

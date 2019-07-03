@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <div class="custom-control-label">Libellé</div>
+      <div class="custom-control text-md-left text-dark">{{departureType.name}}</div>
+    </div>
+
+    <div class="form-group">
+      <div class="custom-control-label">Description</div>
+      <div class="custom-control text-md-left">{{departureType.description}}</div>
+    </div>
+
+    <div class="form-group">
+      <a class="btn btn-info" [routerLink]="['/departure-type/form/edit', departureType.id]"><i class="fa fa-edit"></i> Editer</a>
+      <a class="btn btn-dark ml-1" routerLink="/departure-type/list"><i class="fa fa-list"></i> Voir la liste</a>
+    </div>
+  </div>
+
+</div>
+
+

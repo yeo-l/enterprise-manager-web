@@ -1,0 +1,26 @@
+<button class="btn btn-success mb-1" routerLink="/identifier-type/form"><i class="fa fa-plus"></i></button>
+<table class="table table-bordered table-striped table-sm">
+  <thead class="thead-dark">
+  <tr>
+    <th>#</th>
+    <th>Nom</th>
+    <th>Format</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let ident of identifierTypes">
+    <td valign="center">{{ident.id}}</td>
+    <td valign="center">{{ident.name}}</td>
+    <td valign="center">{{ident.format}}</td>
+    <td width="100" align="center">
+      <div class="btn-group-sm btn-group">
+        <a class="btn btn-link details-icon text-dark" [routerLink]="['/identifier-type/details', ident.id]"><i class="fa fa-1x fa-eye"></i></a>
+        <a class="btn btn-link edit-icon text-success" [routerLink]="['/identifier-type/form/edit', ident.id]"><i class="fa fa-1x fa-edit"></i></a>
+        <a class="btn btn-link edit-icon text-danger" (click)="openConfirmationDialog(ident.id)"><i class="fa fa-1x fa-trash"></i></a>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>
+

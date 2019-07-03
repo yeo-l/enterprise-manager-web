@@ -1,0 +1,52 @@
+<button class="btn btn-dark mb-2" routerLink="/contract/form"><i class="fa fa-plus"></i> Nouveau</button>
+
+<div class="card mb-2" *ngFor="let c of contracts">
+  <div class="card-header">
+    {{c.contractTypeName}}
+  </div>
+  <div class="card-body">
+    <div class="card-text">
+      <table class="table table-bordered table-striped table-sm" datatable [dtOptions]="dtOptions">
+        <thead class="thead-dark">
+        <tr>
+          <!--<th>#</th>-->
+          <th width="50px" align="center"></th>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th width="30px">Genre</th>
+          <th>Date de signature</th>
+          <th>Date de début</th>
+          <th>Date de fin</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let contract of c.contractStaffs">
+          <!--<td valign="center">{{f.id}}</td>-->
+          <td class="align-middle text-center">
+            <i class="fa fa-user fa-4x"></i>
+            {{ contract.staff.person.photoName }}
+          </td>
+          <td class="align-middle">
+            {{contract.staff.person.personName.degree ? contract.staff.person.personName.degree + ' ' : ''}}
+            {{contract.staff.person.personName.familyName}}
+            {{contract.staff.person.personName.familyName2 ? 'née ' + contract.staff.person.personName.familyName2 : ''}}
+          </td>
+          <td class="align-middle">{{contract.staff.person.personName.givenName}} {{contract.staff.person.personName.middleName}}</td>
+          <td class="align-middle text-center"><i class=" fa fa-2x {{ contract.staff.person.gender === 'F' || contract.staff.person.gender === 'Female' ? 'fa-female text-pink' : 'fa-male text-primary' }}"></i></td>
+          <td class="align-middle">{{contract.signedDate | date: 'dd/MM/yyyy'}}</td>
+          <td class="align-middle">{{contract.startDate | date: 'dd/MM/yyyy'}}</td>
+          <td class="align-middle">{{contract.endDate | date: 'dd/MM/yyyy'}}</td>
+          <td class="align-middle" width="100" align="center">
+            <div class="btn-group-sm btn-group">
+              <a class="btn btn-link details-icon text-primary" [routerLink]="['/contract/detail', contract.id]"><i class="fa fa-1x fa-eye"></i></a>
+              <a class="btn btn-link edit-icon text-info" [routerLink]="['/staff/form/edit', contract.id]"><i class="fa fa-1x fa-print"></i></a>
+              <a class="btn btn-link edit-icon text-danger" (click)="openConfirmationDialog(contract.id)"><i class="fa fa-1x fa-trash"></i></a>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

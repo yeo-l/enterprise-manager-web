@@ -1,0 +1,208 @@
+<form  #f="ngForm" (ngSubmit)="save(f.value)">
+  <div class="pl-2 pt-2" ><!--style="background-color: #dfe6e9"-->
+    <fieldset>
+      <legend>Informations Démographiques</legend>
+      <hr>
+      <!--<input type="hidden" name="id" [(ngModel)]="staff.id">-->
+      <!--<input type="hidden" name="uuid" [(ngModel)]="staff.uuid">-->
+      <!--<input type="hidden" name="dateCreated" [(ngModel)]="staff.dateCreated">-->
+      <!--<input type="hidden" name="retired" [(ngModel)]="staff.retired">-->
+      <div class="form-row">
+        <div class="form-group col-md-2">
+          <label for="degree" class="">Civilité</label>
+          <select class="form-control" name="degree" id="degree" [(ngModel)]="personName.degree">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="personName.degree === 'M' ? personName?.degree : 'M'">Monsieur</option>
+            <option [ngValue]="personName.degree === 'Mme' ? personName?.degree : 'Mme'">Madame</option>
+            <option [ngValue]="personName.degree === 'Mlle' ? personName?.degree : 'Mlle'">Mademoiselle</option>
+            <option value="Dr">Docteur</option>
+            <option value="Me">Maitre</option>
+          </select>
+        </div>
+        <div class="form-group col-md-3">
+          <label for="familyName">Nom de Famille</label>
+          <input type="text" class="form-control" id="familyName" [(ngModel)]="personName.familyName" name="familyName">
+        </div>
+        <div class="form-group col-md-3">
+          <label for="familyName2">Nom de jeune fille</label>
+          <input type="text" class="form-control" id="familyName2" [(ngModel)]="personName.familyName2" name="familyName2">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="givenName">Prénom</label>
+          <input type="text" class="form-control" id="givenName" [(ngModel)]="personName.givenName" name="givenName">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="middleName">Deuxième Prénom</label>
+          <input type="text" class="form-control" id="middleName" [(ngModel)]="personName.middleName"  name="middleName">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-2">
+          <label for="gender">Genre</label>
+          <select class="form-control" name="gender" id="gender" [(ngModel)]="person.gender">
+            <option value="H">Homme</option>
+            <option value="F">Femme</option>
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="birthDate">Date de Naissance</label>
+          <div class="input-group">
+            <input type="text" class="form-control" ngbDatepicker #bd="ngbDatepicker" id="birthDate" [(ngModel)]="person.birthDate" name="birthDate">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" (click)="bd.toggle()" type="button"><i class="fa fa-calendar"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="birthPlace">Lieu de Naissance</label>
+          <input type="text" class="form-control" id="birthPlace" name="birthPlace" [(ngModel)]="person.birthPlace">
+        </div>
+      </div>
+      <!--<div class="form-row">-->
+        <!--<div class="form-group col-md-3">-->
+          <!--<label for="photoName" class="custom-file-label">Photo</label>-->
+          <!--<input type="file" class="custom-file-input" id="photoName" name="photoName" [(ngModel)]="person.photoName">-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <hr>
+
+      <div class="form-row">
+        <div class="form-group col-md-2">
+          <label for="telephone1">Téléphone Portable</label>
+          <input type="tel" class="form-control" id="telephone1" name="telephone1" [(ngModel)]="personAddress.telephone1">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="telephone2">Téléphone domicile</label>
+          <input type="tel" class="form-control" id="telephone2" name="telephone2" [(ngModel)]="personAddress.telephone2">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="telephone3">Téléphone bureau</label>
+          <input type="tel" class="form-control" id="telephone3" name="telephone3" [(ngModel)]="personAddress.telephone3">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label for="address1">Adresse</label>
+          <textarea name="address1" id="address1" class="form-control" rows="3" placeholder="1234 Main St" [(ngModel)]="personAddress.address1"></textarea>
+        </div>
+        <div class="form-group col-md-3">
+          <label for="address2">Adresse 2</label>
+          <textarea name="address2" id="address2" class="form-control" rows="3" placeholder="Apartment, studio, or floor" [(ngModel)]="personAddress.address2"></textarea>
+        </div>
+        <div class="form-group col-md-3">
+          <label for="address3">Adresse 3</label>
+          <textarea name="address3" id="address3" class="form-control" rows="3" placeholder="Autre adresse"[(ngModel)]="personAddress.address3"></textarea>
+        </div>
+      </div>
+      <hr>
+    </fieldset>
+    <fieldset>
+      <legend>Embauche</legend>
+      <hr>
+      <div class="form-row" *ngIf="staff.id === null">
+        <div class="form-group col-md-4">
+          <label for="identifierType">Type d'Identifiant</label>
+          <select class="form-control" name="identifierType" id="identifierType" [(ngModel)]="staffIdentifier.identifierType">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="i.id === staffIdentifier.identifierType?.id ? staffIdentifier.identifierType : i" *ngFor="let i of identifierTypes">{{i.name}}</option>
+          </select>
+        </div>
+        <div class="form-group col-md-3">
+          <label for="identifier">Numéro Identifiant</label>
+          <input type="text" class="form-control" id="identifier" name="identifier" [(ngModel)]="staffIdentifier.identifier">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="job">Emploi</label>
+          <select name="job" id="job" class="form-control" [(ngModel)]="staff.job">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="j.id === staff.job?.id ? staff.job : j" *ngFor="let j of jobs; trackBy: trackHierarchyById">
+              {{ j.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="grade">Grade</label>
+          <select class="form-control" name="grade" id="grade" [(ngModel)]="staff.grade">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="g.id === staff.grade?.id ? staff.grade : g" *ngFor="let g of grades; trackBy: trackHierarchyById">
+              {{ g.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div *ngIf="staff.id === null">
+        <hr>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="post">Fonction</label>
+            <select class="form-control" name="post" id="post" [(ngModel)]="staffPost.post" >
+              <option [ngValue]="null"></option>
+              <option [ngValue]="p.id === staffPost.post?.id ? staffPost.post : p" *ngFor="let p of posts; trackBy: trackHierarchyById">
+                {{ p.name }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="staffPost.startDate">Date de prise de service</label>
+            <div class="input-group">
+              <input type="text" class="form-control" ngbDatepicker #sts="ngbDatepicker" id="staffPost.startDate"  name="staffPost.startDate" [(ngModel)]="staffPost.startDate">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="sts.toggle()" type="button"><i class="fa fa-calendar"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="contractType">Type de Contrat</label>
+            <select class="form-control" name="contractType" id="contractType"  [(ngModel)]="contract.contractType">
+              <option [ngValue]="null"></option>
+              <option [ngValue]="ct.id === contract.contractType?.id ? contract.contractType : ct" *ngFor="let ct of contractTypes; trackBy: trackHierarchyById">
+                {{ ct.name }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="contract.signedDate">Date de signature</label>
+            <div class="input-group">
+              <input type="text" class="form-control" ngbDatepicker #cs="ngbDatepicker" id="contract.signedDate" name="contract.signedDate" [(ngModel)]="contract.signedDate">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="cs.toggle()" type="button"><i class="fa fa-calendar"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="contract.startDate">Date de début</label>
+            <div class="input-group">
+              <input type="text" class="form-control" ngbDatepicker #cst="ngbDatepicker" id="contract.startDate" name="contract.startDate" [(ngModel)]="contract.startDate">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="cst.toggle()" type="button"><i class="fa fa-calendar"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="contract.endDate">Date de fin</label>
+            <div class="input-group">
+              <input type="text" class="form-control" ngbDatepicker #cet="ngbDatepicker" id="contract.endDate" name="contract.endDate" [(ngModel)]="contract.endDate">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="cet.toggle()" type="button"><i class="fa fa-calendar"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+  <hr>
+  <button type="submit" class="btn btn-primary mt-2">Enregistrer</button>
+</form>

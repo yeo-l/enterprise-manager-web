@@ -1,0 +1,21 @@
+
+<div class="page-wrapper" [ngClass]="{'toggled' : getSideBarState()}">
+  <app-sidebar></app-sidebar>
+  <main class="page-content">
+    <div class="page-content-header">
+      <span class="toggled-icon" (click)="toggleSidebar()">
+        <i [ngClass]="{'fa fa-arrow-circle-left': getSideBarState() === false}"></i>
+        <i [ngClass]="{'fa fa-arrow-circle-right': getSideBarState() === true}"></i>
+      <!--<i *ngIf="toggled === false" class="fa fa-arrow-circle-right"></i>--></span>
+      Health Information System And Program - Côte d'Ivoire
+    </div>
+    <div class="page-content-sub-header">
+      <h4>{{title}} - {{subTitle}}</h4>
+    </div>
+    <div class="container-fluid mb-3">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="overlay" (click)="toggleSidebar()" [ngClass]="{'show' : !getSideBarState()}"></div>
+  </main>
+
+</div>

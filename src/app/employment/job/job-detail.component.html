@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <div class="custom-control-label">Libellé</div>
+      <div class="custom-control text-md-left text-dark">{{job.name}}</div>
+    </div>
+
+    <div class="form-group">
+      <div class="custom-control-label">Description</div>
+      <div class="custom-control text-md-left">{{job.description}}</div>
+    </div>
+
+    <div class="form-group">
+      <a class="btn btn-info" [routerLink]="['/job/form/edit', job.id]"><i class="fa fa-edit"></i> Editer</a>
+      <a class="btn btn-dark ml-1" routerLink="/job/list"><i class="fa fa-list"></i> Voir la liste</a>
+    </div>
+  </div>
+
+</div>

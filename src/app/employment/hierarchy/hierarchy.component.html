@@ -1,0 +1,27 @@
+<button class="btn btn-success mb-1" routerLink="/hierarchy/form"><i class="fa fa-plus"></i></button>
+<table class="table table-bordered table-striped table-sm">
+  <thead class="thead-dark">
+  <tr>
+    <th>#</th>
+    <th>Nom de la hierarchie</th>
+    <th>Hierarchie parent</th>
+    <th>Niveau</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let h of hierarchies">
+    <td valign="center">{{h.id}}</td>
+    <td valign="center">{{h.name}}</td>
+    <td valign="center">{{h.parentHierarchy ? h.parentHierarchy.name : ''}}</td>
+    <td valign="center">{{h.level ? h.level.name : ''}}</td>
+    <td width="100" align="center">
+      <div class="btn-group-sm btn-group">
+        <a class="btn btn-link details-icon text-dark" [routerLink]="['/hierarchy/details', h.id]"><i class="fa fa-1x fa-eye"></i></a>
+        <a class="btn btn-link edit-icon text-success" [routerLink]="['/hierarchy/form/edit', h.id]"><i class="fa fa-1x fa-edit"></i></a>
+        <a class="btn btn-link edit-icon text-danger" (click)="openConfirmationDialog(h.id)"><i class="fa fa-1x fa-trash"></i></a>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>

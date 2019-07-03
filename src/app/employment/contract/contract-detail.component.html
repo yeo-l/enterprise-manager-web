@@ -1,0 +1,109 @@
+
+<button class="btn btn-dark mt-4 mb-1" routerLink="/contract/list"><i class="fa fa-list"></i> Retour à la liste</button>
+<div class="row">
+
+  <div class="col-md-6">
+    <div class="card mb-2">
+      <div class="card-header">
+        Contrat Actuel
+      </div>
+      <div class="card-body">
+        <div class="card-text">
+          <div class="form-row">
+            <div class="form-group col-sm-12">
+              <label>Nom et Prénoms</label>
+              <div class="form-control bg-light text-light">
+                {{staff.person?.personName.degree}}
+                {{staff.person?.personName.familyName | uppercase}}
+                {{staff.person?.personName.givenName}}
+                {{staff.person?.personName.middleName}}
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-sm-12">
+              <label>Emploi</label>
+              <div class="form-control bg-light">
+                {{staff.job?.name}}
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-sm-12">
+              <label>Contrat</label>
+              <div class="list-group">
+                <div class="list-group-item list-group-item-info">
+                  <div class="row">
+                    <div class="col-sm-4 text-dark text-lg-left">Type de contrat</div>
+                    <div class="col-sm-8"><h6>{{contract.contractType?.name}}</h6></div>
+                  </div>
+                </div>
+                <div class="list-group-item list-group-item-info">
+                  <div class="row align-middle">
+                    <div class="col-sm-4 text-dark text-lg-left">Date de signature</div>
+                    <div class="col-sm-6 text-dark"><h6>{{contract.signedDate | date: 'dd/MM/yyyy'}}</h6></div>
+                  </div>
+                </div>
+                <div class="list-group-item list-group-item-info">
+                  <div class="row">
+                    <div class="col-sm-4 text-dark text-lg-left">Date de début</div>
+                    <div class="col-sm-6"><h6>{{contract.startDate | date: 'dd/MM/yyyy'}}</h6></div>
+                  </div>
+                </div>
+                <div class="list-group-item list-group-item-info">
+                  <div class="row">
+                    <div class="col-sm-4 text-dark text-lg-left">Date de fin</div>
+                    <div class="col-sm-6"><h6>{{contract.endDate | date: 'dd/MM/yyyy'}}</h6></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-sm-12">
+              <label>Fonction actuelle</label>
+              <div class="form-control bg-light">
+                <!--<div *ngIf="currentStaff.staffPosts !== undefined">-->
+                <span *ngFor="let sp of staff?.staffPosts | staffPostFilter:filterStaffPost"> {{sp.post.name}}</span>
+                <!--</div>-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        Anciens contrats
+      </div>
+      <div class="card-body">
+        <div class="card-text">
+          <table class="table table-bordered table-striped table-sm">
+            <thead class="thead-dark">
+            <tr>
+              <th>Type de contrat</th>
+              <th>Date de signature</th>
+              <th>Date de début</th>
+              <th>Date de fin</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let oc of staffContracts">
+              <td>{{oc.contractType.name}}</td>
+              <td>{{oc.signedDate}}</td>
+              <td>{{oc.startDate}}</td>
+              <td>{{oc.endDate}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>

@@ -1,0 +1,47 @@
+<button class="btn btn-dark mb-2" routerLink="/staff/form"><i class="fa fa-plus"></i> Nouveau</button>
+
+<table class="table table-bordered table-striped table-sm" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+  <thead class="thead-dark">
+  <tr>
+    <!--<th>#</th>-->
+    <th width="50px" align="center"></th>
+    <th>Nom</th>
+    <th>Prénom</th>
+    <th width="30px">Genre</th>
+    <!--<th>Fonction</th>-->
+    <th>Date de Naissance</th>
+    <th>Emploi</th>
+    <th>Grade</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let f of staffs">
+    <!--<td valign="center">{{f.id}}</td>-->
+    <td class="align-middle text-center">
+      <i class="fa fa-user fa-4x"></i>
+      {{ f.person.photoName }}
+    </td>
+    <td class="align-middle">
+      {{f.person.personName.degree ? f.person.personName.degree + ' ' : ''}}
+      {{f.person.personName.familyName}}
+      {{f.person.personName.familyName2 ? 'née ' + f.person.personName.familyName2 : ''}}
+    </td>
+    <td class="align-middle">{{f.person.personName.givenName}} {{f.person.personName.middleName}}</td>
+    <td class="align-middle text-center"><i class=" fa fa-2x {{ f.person.gender === 'F' || f.person.gender === 'Female' ? 'fa-female text-pink' : 'fa-male text-primary' }}"></i></td>
+    <td class="align-middle">{{f.person.birthDate | date: 'dd/MM/yyyy'}}</td>
+    <!--<td class="align-middle">-->
+      <!--<span *ngFor="let staffPost of f.staffPosts | staffPostFilter:filterStaffPost"> {{staffPost.post.name}}</span>-->
+    <!--</td>-->
+    <td class="align-middle">{{f.job.name}}</td>
+    <td class="align-middle text-center">{{f.grade.name}}</td>
+    <td class="align-middle" width="100" align="center">
+      <div class="btn-group-sm btn-group">
+        <a class="btn btn-link details-icon text-dark" [routerLink]="['/staff/details', f.id]"><i class="fa fa-1x fa-eye"></i></a>
+        <a class="btn btn-link edit-icon text-success" [routerLink]="['/staff/form/edit', f.id]"><i class="fa fa-1x fa-edit"></i></a>
+        <a class="btn btn-link edit-icon text-danger" (click)="openConfirmationDialog(f.id)"><i class="fa fa-1x fa-trash"></i></a>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>

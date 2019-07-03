@@ -1,0 +1,26 @@
+<button class="btn btn-success mb-1" routerLink="/contract-type/form"><i class="fa fa-plus"></i></button>
+
+<table class="table table-bordered table-striped table-sm">
+  <thead class="thead-dark">
+  <tr>
+    <th>#</th>
+    <th>Nom du grade</th>
+    <th>Durée (jour)</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let c of contractTypes">
+    <td valign="center">{{c.id}}</td>
+    <td valign="center">{{c.name}}</td>
+    <td valign="center">{{c.normalDuration}}</td>
+    <td width="100" align="center">
+      <div class="btn-group-sm btn-group">
+        <a class="btn btn-link details-icon text-dark" [routerLink]="['/contract-type/details', c.id]"><i class="fa fa-1x fa-eye"></i></a>
+        <a class="btn btn-link edit-icon text-success" [routerLink]="['/contract-type/form/edit', c.id]"><i class="fa fa-1x fa-edit"></i></a>
+        <a class="btn btn-link edit-icon text-danger" (click)="openConfirmationDialog(c.id)"><i class="fa fa-1x fa-trash"></i></a>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>

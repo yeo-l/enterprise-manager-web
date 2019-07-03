@@ -1,0 +1,116 @@
+/* You can add global styles to this file, and also import other style files */
+
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+@import '~bootstrap/scss/bootstrap';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~perfect-scrollbar/css/perfect-scrollbar.css';
+
+
+
+body {
+  font-size: .9rem;
+}
+
+.page-wrapper.toggled .sidebar {
+  left: -300px;
+}
+
+// angular perfect scrollbar style
+.sidebar .ps.ps--scrolling-y>.ps__rail-y,
+.sidebar>.ps.ps--scrolling-x>.ps__rail-x,
+.ps .ps__rail-x:hover,
+.ps .ps__rail-y:hover,
+.ps .ps__rail-x:focus,
+.ps .ps__rail-y:focus,
+.ps .ps__rail-x.ps--clicking,
+.ps .ps__rail-y.ps--clicking {
+  background-color: transparent !important;
+}
+
+.sidebar .ps.ps--active-y>.ps__rail-y:hover,
+.sidebar>.ps.ps--active-y>.ps__rail-y.ps--clicking {
+  width: 10px !important;
+}
+
+.ps__thumb-y {
+  background-color: #fff !important;
+  width: 6px!important;
+  border-radius: 0px!important;
+  opacity: .5;
+
+}
+
+ul.pagination {
+  color: #000;
+
+  li.active {
+    background-color: #1b1e21;
+    color: white;
+  }
+}
+
+.page-item.active .page-link {
+  color: white;
+  background-color: #1d1d1d;
+  border-color: #1d1d1d;
+}
+
+
+.page-item .page-link {
+  color: black;
+}
+
+.dataTables_wrapper {
+  border: 1px solid #95afc0;
+  padding: 5px;
+  background-color: #dfe6e9;
+}
+
+.dataTables_wrapper div.row:first-child {
+  margin-bottom: -10px;
+}
+
+.dataTables_filter, .dataTables_length {
+  padding: 0px;
+}
+
+.text-pink {
+  color: hotpink;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.oc-border {
+  border: 1px solid #d63031;
+}
+
+.oc-background {
+  background-color: #dfe6e9;
+}
+
+.oc-name {
+  font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+  white-space: nowrap;
+}
+
+.oc-designation {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.oc-img {
+  margin-left: -10px;
+  width: 60px;
+  height: 60px;
+  border: 1px solid #d63031;
+}
+
+.oc-img img{
+  width: 60px;
+  height: 60px;
+}

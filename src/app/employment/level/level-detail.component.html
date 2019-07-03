@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <div class="custom-control-label">Nom du Niveau</div>
+      <div class="custom-control text-md-left text-dark">{{level.name}}</div>
+    </div>
+
+    <div class="form-group">
+      <div class="custom-control-label">Description</div>
+      <div class="custom-control text-md-left">{{level.description}}</div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="custom-control-label">Niveau supérieur</div>
+      <div class="custom-control text-md-left">{{level.parentLevel ? level.parentLevel.name : 'Pas de niveau parent'}}</div>
+    </div>
+
+    <div class="form-group">
+      <div class="custom-control-label">Niveaux enfants</div>
+      <div class="custom-control text-md-left">
+        <span *ngIf="childrenLevel === undefined">Pas de niveaux enfants</span>
+        <ul *ngIf="childrenLevel">
+          <li *ngFor="let l of childrenLevel ">
+            {{l.name}}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <a class="btn btn-info" [routerLink]="['/level/form/edit', level.id]"><i class="fa fa-edit"></i> Editer</a>
+      <a class="btn btn-dark ml-1" routerLink="/level/list"><i class="fa fa-list"></i> Voir la liste</a>
+    </div>
+  </div>
+
+</div>
+

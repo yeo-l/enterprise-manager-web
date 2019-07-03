@@ -1,0 +1,27 @@
+<button class="btn btn-success mb-1" routerLink="/post/form"><i class="fa fa-plus"></i> Nouveau</button>
+<table class="table table-bordered table-striped table-sm" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+  <thead class="thead-dark">
+  <tr>
+    <th>#</th>
+    <th>Nom de la fonction</th>
+    <th>Nombre de place</th>
+    <th>Hierarchie</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let p of posts">
+    <td valign="center">{{p.id}}</td>
+    <td valign="center">{{p.name}}</td>
+    <td valign="center">{{p.numberAvailable}}</td>
+    <td valign="center">{{p.hierarchy ? p.hierarchy.name : ''}}</td>
+    <td width="100" align="center">
+      <div class="btn-group-sm btn-group">
+        <a class="btn btn-link details-icon text-dark" [routerLink]="['/post/details', p.id]"><i class="fa fa-1x fa-eye"></i></a>
+        <a class="btn btn-link edit-icon text-success" [routerLink]="['/post/form/edit', p.id]"><i class="fa fa-1x fa-edit"></i></a>
+        <a class="btn btn-link edit-icon text-danger" (click)="openConfirmationDialog(p.id)"><i class="fa fa-1x fa-trash"></i></a>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>
